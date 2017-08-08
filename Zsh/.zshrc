@@ -102,10 +102,4 @@ RPS1="${return_code} ${ZF_GRAY}[${ZF_LYELLOW}%*${ZF_GRAY}]"
 
 ###   ZSH AUTO SUGGESTIONS   ###
 # Load zsh-autosuggestions.
-source $source_dir/.zsh/zsh-autosuggestions/autosuggestions.zsh
-
-# Enable autosuggestions automatically.
-zle-line-init() {
-    zle autosuggest-start
-}
-zle -N zle-line-init
+source $source_dir/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
