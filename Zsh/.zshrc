@@ -72,7 +72,7 @@ _white='%F{255}'
 
 # == Git == #
 # Load git plugin
-source $source_dir/.zsh/zsh-git-prompt/git-prompt.zsh
+source $source_dir/zsh-git-prompt/git-prompt.zsh
 
 
 # == Tabbing == #
@@ -102,4 +102,4 @@ RPS1="${return_code} ${ZF_GRAY}[${ZF_LYELLOW}%*${ZF_GRAY}]"
 
 ###   ZSH AUTO SUGGESTIONS   ###
 # Load zsh-autosuggestions.
-source $source_dir/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $source_dir/zsh-autosuggestions/zsh-autosuggestions.zsh
