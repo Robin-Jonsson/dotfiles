@@ -40,6 +40,12 @@ if dein#load_state('/home/robin/.nvim')
   " UI ---
   call dein#add('scrooloose/nerdtree')              " nerdtree
   call dein#add('ryanoasis/vim-devicons')           " icons in nerdtree
+  " fuzzy finder
+  call dein#add('junegunn/fzf', {
+              \ 'rtp': '/home/robin/.nvim/repos/github.com/junegunn/fzf',
+              \ 'build': './install --all',
+              \ })
+  call dein#add('junegunn/fzf.vim')
   " --- UI
 
   " You can specify revision/branch/tag.
@@ -168,3 +174,4 @@ let g:lightline = {
   \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
   \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
   \ }
+nnoremap <C-P> :FZF<CR>
