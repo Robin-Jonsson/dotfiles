@@ -149,6 +149,11 @@ vnoremap <C-E> 3<C-E>
 
 " == AutoCMDs == "
 autocmd BufWritePre * :%s/\s\+$//e      " remove whitespaces @ end of line
+augroup gitcommit
+    autocmd!
+    autocmd filetype gitcommit call setpos('.', [0, 1, 1, 0])
+    autocmd filetype gitcommit set spell
+augroup END
 
 " == Plugins == "
 let g:deoplete#enable_at_startup = 1    " enable deoplete by default
