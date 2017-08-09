@@ -37,6 +37,7 @@ alias vim="nvim"
 if tmux-next -V &> /dev/null; then
     alias tmux="tmux-next"
 fi
+alias ls="ls --color=auto"
 
 # == Tmux == #
 if [[ -z "$TMUX" ]]; then
