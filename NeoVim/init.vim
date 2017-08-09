@@ -124,7 +124,6 @@ set undodir="$HOME/.VIM_UNDO_FILES"     " save undo's in this dir
 map <C-a> <esc>ggVG<CR>
 nmap <leader>l :set list!<CR>
 nmap <leader>t :NERDTree<CR>
-" nmap <leader>s :source ~/.vim/snippets/rj-snippets.vim<CR>
 nmap <C-K> [e
 nmap <C-J> ]e
 vmap <C-K> [egv
@@ -140,12 +139,15 @@ inoremap <DOWN> <NOP>
 inoremap <LEFT> <NOP>
 inoremap <RIGHT> <NOP>
 inoremap <C-o> <Esc>o
-nnoremap <C-L> :nohl<CR><C-L>
+nnoremap <Esc> :nohl<CR>
 
+" scroll through the file a little faster
 nnoremap <C-Y> 3<C-Y>
 vnoremap <C-Y> 3<C-Y>
+inoremap <C-Y> <Esc>3<C-Y>i
 nnoremap <C-E> 3<C-E>
 vnoremap <C-E> 3<C-E>
+inoremap <C-E> <Esc>3<C-E>i
 
 " == AutoCMDs == "
 autocmd BufWritePre * :%s/\s\+$//e      " remove whitespaces @ end of line
