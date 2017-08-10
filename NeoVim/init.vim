@@ -43,7 +43,7 @@ if dein#load_state('/home/robin/.nvim')
   " fuzzy finder
   call dein#add('junegunn/fzf', {
               \ 'rtp': '/home/robin/.nvim/repos/github.com/junegunn/fzf',
-              \ 'build': './install --all',
+              \ 'build': './install --bin',
               \ })
   call dein#add('junegunn/fzf.vim')
   " --- UI
