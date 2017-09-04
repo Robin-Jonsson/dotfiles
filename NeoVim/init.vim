@@ -150,10 +150,10 @@ nnoremap <Esc> :nohl<CR>
 " scroll through the file a little faster
 nnoremap <C-Y> 3<C-Y>
 vnoremap <C-Y> 3<C-Y>
-inoremap <C-Y> <Esc>3<C-Y>i
+inoremap <C-Y> <Esc>3<C-Y>a
 nnoremap <C-E> 3<C-E>
 vnoremap <C-E> 3<C-E>
-inoremap <C-E> <Esc>3<C-E>i
+inoremap <C-E> <Esc>3<C-E>a
 
 " == AutoCMDs == "
 autocmd BufWritePre * :%s/\s\+$//e      " remove whitespaces @ end of line
