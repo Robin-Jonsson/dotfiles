@@ -50,7 +50,7 @@ fi
 alias ls="ls --color=auto"
 
 # == Tmux == #
-if [[ -z "$TMUX" ]]; then
+if [[ -z "$TMUX" ]] && [[ -z "$SSH_CLIENT" ]]; then
     if tmux-next -V &> /dev/null; then
         exec tmux-next
     else;
@@ -95,7 +95,9 @@ FG_WHITE="\e[38;5;255m"
 FG_GRAY="\e[38;5;250m"
 FG_LGREEN="\e[38;5;108m"
 FG_LBLUE="\e[38;5;111m"
+FG_RED="\e[38;5;196m"
 FG_LRED="\e[38;5;203m"
+FG_YELLOW="\e[38;5;226m"
 
 # Zsh colors
 ZF_WHITE="%F{255}"
@@ -104,7 +106,8 @@ ZF_LYELLOW="%F{228}"
 
 precmd() {
     GIT_PROMPT=`git_prompt_precmd`
-    LEFT="$(echo $FG_GRAY)┌──── $(echo $FG_LGREEN)$(whoami)@$(hostname) $(echo $FG_GRAY)in $(echo $FG_LBLUE)$(dirs)/ $(echo $GIT_PROMPT)"
+    REMOTE=`if [[ -n $SSH_CLIENT ]]; then; echo " $(echo $FG_YELLOW)[ SSH: $(echo $FG_RED)$(echo $SSH_CONNECTION | awk '{print $1}')$(echo $FG_YELLOW) ]"; fi`
+    LEFT="$(echo $FG_GRAY)┌────$(echo $REMOTE) $(echo $FG_LGREEN)$(whoami)@$(hostname) $(echo $FG_GRAY)in $(echo $FG_LBLUE)$(dirs)/ $(echo $GIT_PROMPT)"
     print $LEFT
 }
 PS1="${ZF_GRAY}└ $ ${ZF_WHITE}"
