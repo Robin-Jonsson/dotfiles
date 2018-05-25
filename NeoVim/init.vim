@@ -130,10 +130,8 @@ set undodir="$HOME/.VIM_UNDO_FILES"     " save undo's in this dir
 map <C-a> <esc>ggVG<CR>
 nmap <leader>l :set list!<CR>
 nmap <leader>t :NERDTree<CR>
-nmap <C-K> [e
-nmap <C-J> ]e
-vmap <C-K> [egv
-vmap <C-J> ]egv
+vmap <C-K> <Esc>`<kdd`>pgv
+vmap <C-J> <Esc>`>jdd`<Pgv
 vmap > >gv
 vmap < <gv
 noremap <UP> <NOP>
