@@ -154,7 +154,7 @@ vnoremap <C-E> 3<C-E>
 inoremap <C-E> <Esc>3<C-E>a
 
 " == AutoCMDs == "
-autocmd BufWritePre * :%s/\s\+$//e      " remove whitespaces @ end of line
+autocmd BufWritePre * if &ft!="markdown"|:%s/\s\+$//e|endif      " remove whitespaces @ end of line unless you're writing markdown
 augroup gitcommit
     autocmd!
     autocmd filetype gitcommit call setpos('.', [0, 1, 1, 0])
