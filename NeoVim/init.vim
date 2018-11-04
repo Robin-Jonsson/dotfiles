@@ -46,6 +46,7 @@ if dein#load_state('/home/robin/.nvim')
               \ 'build': './install --bin',
               \ })
   call dein#add('junegunn/fzf.vim')
+  call dein#add('junegunn/goyo.vim')                " center focus text
   " --- UI
 
   " You can specify revision/branch/tag.
