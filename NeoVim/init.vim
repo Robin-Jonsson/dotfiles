@@ -16,6 +16,7 @@ if dein#load_state('/home/robin/.nvim')
   call dein#add('KeitaNakamura/neodark.vim')
   call dein#add('rakr/vim-one')
   call dein#add('zcodes/vim-colors-basic')
+  call dein#add('ayu-theme/ayu-vim')
   call dein#add('itchyny/lightline.vim')            " Lightline status bar
   " --- Color schemes
 
@@ -73,7 +74,10 @@ if has('termguicolors')
 endif
 
 set background=dark                     " dark version of colorscheme
-colorscheme one                         " set colorscheme
+" colorscheme one                         " set colorscheme
+" let ayucolor="mirage"
+let ayucolor="dark"
+colorscheme ayu                         " set colorscheme
 set visualbell                          " turns system bell from audio to visual
 set t_vb=                               " something with bell
 " }}}
@@ -169,7 +173,7 @@ let g:multi_cursor_prev_key='<C-p>'
 let g:multi_cursor_skip_key='<C-x>'
 let g:multi_cursor_quit_key='<Esc>'
 let g:lightline = {
-  \ 'colorscheme': 'onedark',
+  \ 'colorscheme': 'deus',
   \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
   \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
   \ }
