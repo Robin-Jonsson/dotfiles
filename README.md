@@ -31,5 +31,4 @@ I like to source files when possible, so I'm reminded to edit the git repo and n
 
 ## Known Issues
 ### Powerline symbols
-- install https://github.com/powerline/fonts
-- use "Ubuntu Mono derivative Powerline" instead of "Ubuntu Mono" in alacritty config
+- use the [NerdFont](https://github.com/ryanoasis/nerd-fonts) patched variant of Ubuntu Mono

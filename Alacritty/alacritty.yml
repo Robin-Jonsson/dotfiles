@@ -92,17 +92,17 @@ tabspaces: 8
 font:
   # Normal (roman) font face
   normal:
-    family: Ubuntu Mono derivative Powerline
+    family: Ubuntu Mono
     #style: Regular
 
   # Bold font face
   bold:
-    family: Ubuntu Mono derivative Powerline
+    family: Ubuntu Mono
     #style: Bold
 
   # Italic font face
   italic:
-    family: Ubuntu Mono derivative Powerline
+    family: Ubuntu Mono
     #style: Italic
 
   # Point size
