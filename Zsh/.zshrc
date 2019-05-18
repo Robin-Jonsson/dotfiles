@@ -39,7 +39,6 @@ bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 bindkey "^[[3~" delete-char
 bindkey '^[[Z' reverse-menu-complete
-bindkey -s "^L" '^Uclear\n'
 
 # == Aliases == #
 alias vim="nvim"
@@ -106,10 +105,8 @@ ZF_LYELLOW="%F{228}"
 precmd() {
     GIT_PROMPT=`git_prompt_precmd`
     REMOTE=`if [[ -n $SSH_CLIENT ]]; then; echo " $(echo $FG_YELLOW)[ SSH: $(echo $FG_RED)$(echo $SSH_CONNECTION | awk '{print $1}')$(echo $FG_YELLOW) ]"; fi`
-    LEFT="$(echo $FG_GRAY)┌────$(echo $REMOTE) $(echo $FG_LGREEN)$(whoami)@$(hostname) $(echo $FG_GRAY)in $(echo $FG_LBLUE)$(dirs)/ $(echo $GIT_PROMPT)"
-    print $LEFT
 }
-PS1="${ZF_GRAY}└ $ ${ZF_WHITE}"
+PS1=$'$(echo $FG_GRAY)┌────$(echo $REMOTE) $(echo $FG_LGREEN)$(whoami)@$(hostname) $(echo $FG_GRAY)in $(echo $FG_LBLUE)$(dirs) $(echo $GIT_PROMPT)\n${ZF_GRAY}└ $ ${ZF_WHITE}'
 RPS1="${return_code} ${ZF_GRAY}[${ZF_LYELLOW}%*${ZF_GRAY}]"
 
 
