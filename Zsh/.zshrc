@@ -79,11 +79,6 @@ _yellow='%F{154}'
 _green='%F{064}'
 _white='%F{255}'
 
-# == Git == #
-# Load git plugin
-source $source_dir/zsh-git-prompt/git-prompt.zsh
-
-
 # == Tabbing == #
 zstyle ':completion:*' menu select
 
@@ -103,7 +98,21 @@ ZF_GRAY="%F{250}"
 ZF_LYELLOW="%F{228}"
 
 precmd() {
-    GIT_PROMPT=`git_prompt_precmd`
+    GIT_CMD=`git rev-parse --abbrev-ref HEAD 2> /dev/null`
+    GIT_PROMPT=""
+    if [[ -n $GIT_CMD ]]; then
+        GIT_PROMPT+="${ZF_GRAY}[${FG_LGREEN}${GIT_CMD}"
+        if [[ -n $(git diff --name-only) ]]; then
+            GIT_PROMPT+="*"
+        fi
+        if [[ -n $(git diff --staged --name-only) ]]; then
+            GIT_PROMPT+="&"
+        fi
+        if [[ -n $(git rev-list origin..HEAD) ]]; then
+            GIT_PROMPT+="©"
+        fi
+        GIT_PROMPT+="${ZF_GRAY}]"
+    fi
     REMOTE=`if [[ -n $SSH_CLIENT ]]; then; echo " $(echo $FG_YELLOW)[ SSH: $(echo $FG_RED)$(echo $SSH_CONNECTION | awk '{print $1}')$(echo $FG_YELLOW) ]"; fi`
 }
 PS1=$'$(echo $FG_GRAY)┌────$(echo $REMOTE) $(echo $FG_LGREEN)$(whoami)@$(hostname) $(echo $FG_GRAY)in $(echo $FG_LBLUE)$(dirs) $(echo $GIT_PROMPT)\n${ZF_GRAY}└ $ ${ZF_WHITE}'
