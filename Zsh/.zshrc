@@ -111,6 +111,9 @@ precmd() {
         if [[ -n $(git rev-list origin..HEAD) ]]; then
             GIT_PROMPT+="©"
         fi
+        if [[ -n $(git rev-list HEAD..origin) ]]; then
+            GIT_PROMPT+="®"
+        fi
         GIT_PROMPT+="${ZF_GRAY}]"
     fi
     REMOTE=`if [[ -n $SSH_CLIENT ]]; then; echo " $(echo $FG_YELLOW)[ SSH: $(echo $FG_RED)$(echo $SSH_CONNECTION | awk '{print $1}')$(echo $FG_YELLOW) ]"; fi`
