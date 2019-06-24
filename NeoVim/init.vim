@@ -12,10 +12,6 @@ if dein#load_state('/home/robin/.nvim')
 
   " Add or remove your plugins here:
   " Color schemes ---
-  call dein#add('joshdick/onedark.vim')
-  call dein#add('KeitaNakamura/neodark.vim')
-  call dein#add('rakr/vim-one')
-  call dein#add('zcodes/vim-colors-basic')
   call dein#add('ayu-theme/ayu-vim')
   call dein#add('itchyny/lightline.vim')            " Lightline status bar
   " --- Color schemes
@@ -24,6 +20,7 @@ if dein#load_state('/home/robin/.nvim')
   call dein#add('Shougo/neosnippet.vim')            " snippet manager
   call dein#add('Shougo/neosnippet-snippets')       " snippets
   call dein#add('Shougo/deoplete.nvim')             " auto completion
+  call dein#add('Shougo/deol.nvim')                 " shell integration
   " --- Shougo
 
   " Snytax ---
@@ -33,9 +30,8 @@ if dein#load_state('/home/robin/.nvim')
 
   " Text manipulation ---
   call dein#add('tpope/vim-surround')               " change surrounding <blah>
-  call dein#add('tomtom/tcomment_vim')              " comment using gcc
-  call dein#add('gko/vim-coloresque')               " visual representation of colors
-  call dein#add('terryma/vim-multiple-cursors')     " add features using multiple cursors
+  call dein#add('tpope/vim-commentary')             " comment out stuff 'gcc'
+  call dein#add('tpope/vim-repeat')                 " repeat plugin features using '.'
   " --- Text manipulation
 
   " UI ---
@@ -48,10 +44,8 @@ if dein#load_state('/home/robin/.nvim')
               \ })
   call dein#add('junegunn/fzf.vim')
   call dein#add('junegunn/goyo.vim')                " center focus text
+  call dein#add('wsdjeg/dein-ui.vim')               " adds :DeinUpdate
   " --- UI
-
-  " You can specify revision/branch/tag.
-  call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
 
   " Required:
   call dein#end()
@@ -74,7 +68,6 @@ if has('termguicolors')
 endif
 
 set background=dark                     " dark version of colorscheme
-" colorscheme one                         " set colorscheme
 " let ayucolor="mirage"
 let ayucolor="dark"
 colorscheme ayu                         " set colorscheme
@@ -128,8 +121,10 @@ let mapleader = ","                     " set the leader key
 set nostartofline                       " diable column change
 set notimeout ttimeout ttimeoutlen=0    " wait for input
 set langmenu=en_US.UTF-8                " set language
+set backupdir=/tmp//
+set directory=/tmp//
+set undodir=/tmp//
 set undofile                            " save undo's after file close
-set undodir="$HOME/.VIM_UNDO_FILES"     " save undo's in this dir
 
 " == (Re)-maps == "
 map <C-a> <esc>ggVG<CR>
