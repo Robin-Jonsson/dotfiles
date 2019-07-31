@@ -27,7 +27,7 @@ ln -s ~/Git/Github/Robin-Jonsson/dotfiles/Zsh/.zshrc ~/.zshrc
 I like to source files when possible, so I'm reminded to edit the git repo and not just the local file.
 
 ## Screenshot
-![Screenshot of Zsh Prompt](https://raw.githubusercontent.com/Robin-Jonsson/dotfiles/master/Screenshot-basic_prompt.png)
+![Screenshot of Zsh Prompt](https://raw.githubusercontent.com/Robin-Jonsson/dotfiles/master/screenshot.png)
 
 ## Known Issues
 ### Powerline symbols
