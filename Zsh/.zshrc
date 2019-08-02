@@ -45,7 +45,8 @@ alias vim="nvim"
 if tmux-next -V &> /dev/null; then
     alias tmux="tmux-next"
 fi
-alias ls="ls --color=auto"
+alias ls="ls --color=auto -h"
+alias ll="ls -alF"
 
 # == Tmux == #
 if [[ -z "$TMUX" ]] && [[ -z "$SSH_CLIENT" ]]; then
