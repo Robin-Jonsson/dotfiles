@@ -45,9 +45,9 @@ if dein#load_state('/home/robin/.nvim')
   call dein#add('junegunn/fzf.vim')
   call dein#add('junegunn/goyo.vim')                " center focus text
   call dein#add('wsdjeg/dein-ui.vim')               " adds :DeinUpdate
-  " code auto completion
-  call dein#add('neoclide/coc.nvim', {
-              \ 'build': 'yarn install --frozen-lockfile',
+  " auto completion
+  call dein#add('autozimu/LanguageClient-neovim', {
+              \ 'build': 'bash install.sh',
               \ })
   " --- UI
 
@@ -177,4 +177,8 @@ let g:lightline = {
   \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
   \ }
 nnoremap <C-P> :FZF<CR>
-let g:coc_global_extensions=['coc-html', 'coc-css', 'coc-rls']
+let g:LanguageClient_serverCommands = {
+    \ 'c': ['clangd'],
+    \ 'cpp': ['clangd'],
+    \ 'rust': ['rls'],
+    \ }
