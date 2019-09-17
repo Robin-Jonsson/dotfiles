@@ -45,6 +45,10 @@ if dein#load_state('/home/robin/.nvim')
   call dein#add('junegunn/fzf.vim')
   call dein#add('junegunn/goyo.vim')                " center focus text
   call dein#add('wsdjeg/dein-ui.vim')               " adds :DeinUpdate
+  " code auto completion
+  call dein#add('neoclide/coc.nvim', {
+              \ 'build': 'yarn install --frozen-lockfile',
+              \ })
   " --- UI
 
   " Required:
@@ -129,7 +133,7 @@ set undofile                            " save undo's after file close
 " == (Re)-maps == "
 map <C-a> <esc>ggVG<CR>
 nmap <leader>l :set list!<CR>
-nmap <leader>t :NERDTree<CR>
+nmap <leader>t :NERDTreeToggle<CR>
 vmap <C-K> <Esc>`<kdd`>pgv
 vmap <C-J> <Esc>`>jdd`<Pgv
 vmap > >gv
@@ -173,3 +177,4 @@ let g:lightline = {
   \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
   \ }
 nnoremap <C-P> :FZF<CR>
+let g:coc_global_extensions=['coc-html', 'coc-css', 'coc-rls']
