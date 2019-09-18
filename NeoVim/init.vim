@@ -166,19 +166,21 @@ augroup gitcommit
 augroup END
 
 " == Plugins == "
+" deoplete
 let g:deoplete#enable_at_startup = 1    " enable deoplete by default
-let g:multi_cursor_next_key='<C-n>'
-let g:multi_cursor_prev_key='<C-p>'
-let g:multi_cursor_skip_key='<C-x>'
-let g:multi_cursor_quit_key='<Esc>'
+" lightline
 let g:lightline = {
   \ 'colorscheme': 'deus',
   \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
   \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
   \ }
+" fzf
 nnoremap <C-P> :FZF<CR>
+" LanguageClient
 let g:LanguageClient_serverCommands = {
     \ 'c': ['clangd'],
     \ 'cpp': ['clangd'],
     \ 'rust': ['rls'],
     \ }
+" neosnippet
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
