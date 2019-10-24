@@ -30,9 +30,8 @@ autoload -U compinit && compinit
 
 ###   EXPORTS   ###
 export TERM=xterm-256color
-export GOROOT=$HOME/.go
-export GOPATH=$GOROOT/bin
-export PATH=$PATH:$GOPATH
+export GOPATH=$HOME/.go
+export PATH=$PATH:$GOPATH/bin
 
 
 ### USAGE   ###
