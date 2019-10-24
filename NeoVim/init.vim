@@ -180,6 +180,7 @@ nnoremap <C-P> :FZF<CR>
 let g:LanguageClient_serverCommands = {
     \ 'c': ['clangd'],
     \ 'cpp': ['clangd'],
+    \ 'go': ['gopls'],
     \ 'rust': ['rls'],
     \ }
 " neosnippet
