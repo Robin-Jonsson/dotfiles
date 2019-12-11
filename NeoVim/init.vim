@@ -49,6 +49,7 @@ if dein#load_state('/home/robin/.nvim')
   call dein#add('autozimu/LanguageClient-neovim', {
               \ 'build': 'bash install.sh',
               \ })
+  call dein#add('junegunn/limelight.vim')           " focused text
   " --- UI
 
   " Required:
