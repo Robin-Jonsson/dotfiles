@@ -17,8 +17,6 @@ if dein#load_state('/home/robin/.nvim')
   " --- Color schemes
 
   " Shougo ---
-  call dein#add('Shougo/neosnippet.vim')            " snippet manager
-  call dein#add('Shougo/neosnippet-snippets')       " snippets
   call dein#add('Shougo/deoplete.nvim')             " auto completion
   call dein#add('Shougo/deol.nvim')                 " shell integration
   " --- Shougo
@@ -45,11 +43,6 @@ if dein#load_state('/home/robin/.nvim')
   call dein#add('junegunn/fzf.vim')
   call dein#add('junegunn/goyo.vim')                " center focus text
   call dein#add('wsdjeg/dein-ui.vim')               " adds :DeinUpdate
-  " auto completion
-  call dein#add('autozimu/LanguageClient-neovim', {
-              \ 'build': 'bash install.sh',
-              \ })
-  call dein#add('junegunn/limelight.vim')           " focused text
   " --- UI
 
   " Required:
@@ -177,12 +170,3 @@ let g:lightline = {
   \ }
 " fzf
 nnoremap <C-P> :FZF<CR>
-" LanguageClient
-let g:LanguageClient_serverCommands = {
-    \ 'c': ['clangd'],
-    \ 'cpp': ['clangd'],
-    \ 'go': ['gopls'],
-    \ 'rust': ['rls'],
-    \ }
-" neosnippet
-imap <C-k> <Plug>(neosnippet_expand_or_jump)
