@@ -29,6 +29,19 @@ I like to source files when possible, so I'm reminded to edit the git repo and n
 ## Screenshot
 ![Screenshot of Zsh Prompt](https://raw.githubusercontent.com/Robin-Jonsson/dotfiles/master/screenshot.png)
 
+## Colors
+https://coolors.co/dadcd8-746560-0f1218-edbe2c-6a70d9
+
+`#DADCD8` - "Timberwolf"
+
+`#746560` - "Dim Gray"
+
+`#0F1218` - "Rich Black FOGRA 29"
+
+`#EDBE2C` - "Saffron"
+
+`#6A70D9` - "Violet Blue Crayola"
+
 ## Known Issues
 ### Powerline symbols
 - use the [NerdFont](https://github.com/ryanoasis/nerd-fonts) patched variant of Ubuntu Mono

@@ -12,8 +12,7 @@ if dein#load_state('/home/robin/.nvim')
 
   " Add or remove your plugins here:
   " Color schemes ---
-  call dein#add('ayu-theme/ayu-vim')
-  call dein#add('itchyny/lightline.vim')            " Lightline status bar
+  call dein#add('Robin-Jonsson/dotfiles')           " pull in colors/gunmetal.vim
   " --- Color schemes
 
   " Shougo ---
@@ -66,9 +65,7 @@ if has('termguicolors')
 endif
 
 set background=dark                     " dark version of colorscheme
-" let ayucolor="mirage"
-let ayucolor="dark"
-colorscheme ayu                         " set colorscheme
+colorscheme gunmetal                    " set colorscheme
 set visualbell                          " turns system bell from audio to visual
 set t_vb=                               " something with bell
 " }}}
@@ -98,6 +95,40 @@ set foldmethod=marker                   " enable folding using markers
 set lazyredraw                          " fix buggy status line in tmux
 " custom gui cursors
 set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
+" status line
+function! StatusLineMode()
+    let l:mode = mode()
+    if l:mode ==# 'n'
+        return "NORMAL"
+    elseif l:mode ==# 'i'
+        return "INSERT"
+    elseif l:mode ==# 'c'
+        return "COMMAND"
+    elseif l:mode ==# 'v'
+        return "VISUAL"
+    elseif l:mode ==# 'V'
+        return "V-LINE"
+    elseif l:mode ==# ''
+        return "V-BLOCK"
+    elseif l:mode ==# 'R'
+        return "REPLACE"
+    elseif l:mode ==# 's'
+        return "SELECT"
+    elseif l:mode ==# 't'
+        return "TERMINAL"
+    elseif l:mode ==# '!'
+        return "SHELL"
+    endif
+endfunction
+set statusline=%1*\ %{StatusLineMode()}\ |
+set statusline+=%2*\ %t\ %0*
+set statusline+=\ %m
+set statusline+=%=
+set statusline+=\ %{&fileformat}\ \|
+set statusline+=\ %{&fileencoding}\ \|
+set statusline+=\ %{&filetype}\ |
+set statusline+=%2*\ %3p%%\ %0*
+set statusline+=%3*\ %l:%c\ |
 
 " == Spaces & Tabs == "
 set tabstop=4                           " number of visual spaces per TAB
