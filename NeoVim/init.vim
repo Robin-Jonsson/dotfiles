@@ -163,6 +163,8 @@ set undofile                            " save undo's after file close
 
 " == (Re)-maps == "
 map <C-a> <esc>ggVG<CR>
+imap <F1> <nop>
+nmap <F1> <nop>
 nmap <leader>l :set list!<CR>
 nmap <leader>t :NERDTreeToggle<CR>
 vmap <C-K> <Esc>`<kdd`>pgv
