@@ -130,10 +130,10 @@ set statusline=%1*\ %{StatusLineMode()}\ |
 set statusline+=%2*\ %t\ %0*
 set statusline+=\ %m
 set statusline+=%=
-set statusline+=\ %{&fileformat}\ \|
-set statusline+=\ %{&fileencoding}\ \|
-set statusline+=\ %{StatusLineFileType()}\ |
-set statusline+=%2*\ %3p%%\ %0*
+set statusline+=%{&fileformat}｜
+set statusline+=%{&fileencoding}｜
+set statusline+=%{StatusLineFileType()}\ |
+set statusline+=%2*\ %3p%%\ |
 set statusline+=%3*\ %l:%c\ |
 
 " == Spaces & Tabs == "

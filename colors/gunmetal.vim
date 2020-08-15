@@ -133,6 +133,7 @@ call s:SetHi("String",          s:Light3,   "none",     "none")
 call s:SetHi("Special",         s:Light3,   "none",     "bold")
 call s:SetHi("Visual",          "none",     s:Dark1,    "none")
 call s:SetHi("PmenuSel",        "none",     s:Dark2,    "bold")
+call s:SetHi("Search",          "none",     s:Dark2,    "none")
 
 " Status line
 call s:SetHi("StatusLine",      s:Light0,   s:Dark0,    "none")
@@ -148,5 +149,4 @@ hi link             Number        String
 hi link             SpecialChar   Special
 hi link             CursorLine    Visual
 hi link             ColorColumn   Visual
-hi link             Search        Visual
 hi link             Pmenu         Visual
