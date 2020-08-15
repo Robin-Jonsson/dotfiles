@@ -120,13 +120,19 @@ function! StatusLineMode()
         return "SHELL"
     endif
 endfunction
+function! StatusLineFileType()
+    if &filetype != ""
+        return &filetype
+    endif
+    return "none"
+endfunction
 set statusline=%1*\ %{StatusLineMode()}\ |
 set statusline+=%2*\ %t\ %0*
 set statusline+=\ %m
 set statusline+=%=
 set statusline+=\ %{&fileformat}\ \|
 set statusline+=\ %{&fileencoding}\ \|
-set statusline+=\ %{&filetype}\ |
+set statusline+=\ %{StatusLineFileType()}\ |
 set statusline+=%2*\ %3p%%\ %0*
 set statusline+=%3*\ %l:%c\ |
 
