@@ -98,11 +98,11 @@ function! s:SetHi(grp, fg, bg, style)
 endfunc
 
 " Color generator:
-" https://coolors.co/dadcd8-746560-0f1218-edbe2c-6a70d9
+" https://coolors.co/dadcd8-746560-0f1218-d7b58c-6a70d9
 "
 " Dark      #0F1218 (Rich Black FOGRA 29)
 " Light     #DADCD8 (Timberwolf)
-" Accent    #EDBE2C (Saffron)
+" Gold      #D7B58C (Tan)
 " Gray      #746560 (Dim Gray)
 " Blue      #6A70D9 (Violet Blue Crayola)
 
@@ -117,7 +117,7 @@ let s:Light3    = "#AAAFA6"
 let s:Light4    = "#9BA096"
 let s:Light5    = "#8B9186"
 
-let s:Accent0   = "#EDBE2C"
+let s:Gold0     = "#D7B58C"
 let s:Gray0     = "#746560"
 let s:Blue0     = "#6A70D9"
 
@@ -137,10 +137,8 @@ call s:SetHi("Search",          "none",     s:Dark2,    "none")
 call s:SetHi("SpellBad",        "none",     "none",     "underline")
 
 " Status line
-call s:SetHi("StatusLine",      s:Light0,   s:Dark0,    "none")
-call s:SetHi("User1",           s:Dark0,    s:Accent0,  "none")
-call s:SetHi("User2",           s:Light0,   s:Gray0,    "none")
-call s:SetHi("User3",           s:Light0,   s:Blue0,    "none")
+call s:SetHi("StatusLine",      s:Dark0,    s:Gold0,    "none")
+call s:SetHi("StatusLineNC",    s:Dark0,    s:Light1,   "none")
 
 " Linking
 hi link             Type          Statement

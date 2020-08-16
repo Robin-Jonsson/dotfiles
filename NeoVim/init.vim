@@ -126,15 +126,15 @@ function! StatusLineFileType()
     endif
     return "none"
 endfunction
-set statusline=%1*\ %{StatusLineMode()}\ |
-set statusline+=%2*\ %t\ %0*
+set statusline=\ %-8{StatusLineMode()}
+set statusline+=\ %t
 set statusline+=\ %m
 set statusline+=%=
-set statusline+=%{&fileformat}｜
+set statusline+=--\ %{&fileformat}｜
 set statusline+=%{&fileencoding}｜
-set statusline+=%{StatusLineFileType()}\ |
-set statusline+=%2*\ %3p%%\ |
-set statusline+=%3*\ %l:%c\ |
+set statusline+=%{StatusLineFileType()}\ --
+set statusline+=\ %3p%%\ |
+set statusline+=%3l:%3c\ |
 
 " == Spaces & Tabs == "
 set tabstop=4                           " number of visual spaces per TAB
@@ -201,11 +201,5 @@ augroup END
 " == Plugins == "
 " deoplete
 let g:deoplete#enable_at_startup = 1    " enable deoplete by default
-" lightline
-let g:lightline = {
-  \ 'colorscheme': 'deus',
-  \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
-  \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
-  \ }
 " fzf
 nnoremap <C-P> :FZF<CR>
