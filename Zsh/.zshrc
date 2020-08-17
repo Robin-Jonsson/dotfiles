@@ -128,3 +128,6 @@ RPS1="${return_code} ${ZF_GRAY}[${ZF_LYELLOW}%*${ZF_GRAY}]"
 ###   ZSH AUTO SUGGESTIONS   ###
 # Load zsh-autosuggestions.
 source $source_dir/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# FZF
+source $source_dir/fzf-key-bindings.zsh
