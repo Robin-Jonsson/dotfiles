@@ -65,7 +65,7 @@ if has('termguicolors')
 endif
 
 set background=dark                     " dark version of colorscheme
-colorscheme gunmetal                    " set colorscheme
+colorscheme robdark                     " set colorscheme
 set visualbell                          " turns system bell from audio to visual
 set t_vb=                               " something with bell
 " }}}

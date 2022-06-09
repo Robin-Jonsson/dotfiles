@@ -68,43 +68,21 @@ zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 
 autoload -U colors && colors
 setopt prompt_subst
 
-# == Variables == #
-_newline=$'\n'
-_lineup=$'\e[1A'
-_linedown=$'\e[1B '
-local return_code="%(?..%{$fg[red]%} %? ↵%{$reset_color%})"
-
 # == Colors == #
-_black='%F{016}'
-_lightblue='%F{111}'
-_lightgreen='%F{108}'
-_yellow='%F{154}'
-_green='%F{064}'
-_white='%F{255}'
+source $source_dir/color-robdark.zsh
+
+# == Variables == #
+local return_code="%(?..${ACCENT} %? ↵%{$reset_color%})"
 
 # == Tabbing == #
 zstyle ':completion:*' menu select
 
 # == Prompt == #
-# Bash colors
-FG_WHITE="\e[38;5;255m"
-FG_GRAY="\e[38;5;250m"
-FG_LGREEN="\e[38;5;108m"
-FG_LBLUE="\e[38;5;111m"
-FG_RED="\e[38;5;196m"
-FG_LRED="\e[38;5;203m"
-FG_YELLOW="\e[38;5;226m"
-
-# Zsh colors
-ZF_WHITE="%F{255}"
-ZF_GRAY="%F{250}"
-ZF_LYELLOW="%F{228}"
-
 precmd() {
     GIT_CMD=`git rev-parse --abbrev-ref HEAD 2> /dev/null`
     GIT_PROMPT=""
     if [[ -n $GIT_CMD ]]; then
-        GIT_PROMPT+="${ZF_GRAY}[${FG_LGREEN}${GIT_CMD}"
+        GIT_PROMPT+="${FG0}[${ACCENT}${GIT_CMD}"
         if [[ -n $(git diff --name-only) ]]; then
             GIT_PROMPT+="*"
         fi
@@ -117,12 +95,12 @@ precmd() {
         if [[ -n $(git rev-list HEAD..origin) ]]; then
             GIT_PROMPT+="®"
         fi
-        GIT_PROMPT+="${ZF_GRAY}]"
+        GIT_PROMPT+="${FG0}]"
     fi
-    REMOTE=`if [[ -n $SSH_CLIENT ]]; then; echo " $(echo $FG_YELLOW)[ SSH: $(echo $FG_RED)$(echo $SSH_CONNECTION | awk '{print $1}')$(echo $FG_YELLOW) ]"; fi`
+    REMOTE=`if [[ -n $SSH_CLIENT ]]; then; echo " $(echo $GOLD)[ SSH: $(echo $ACCENT)$(echo $SSH_CONNECTION | awk '{print $1}')$(echo $GOLD) ]"; fi`
 }
-PS1=$'$(echo $FG_GRAY)┌────$(echo $REMOTE) $(echo $FG_LGREEN)$(whoami)@$(hostname) $(echo $FG_GRAY)in $(echo $FG_LBLUE)$(dirs) $(echo $GIT_PROMPT)\n${ZF_GRAY}└ $ ${ZF_WHITE}'
-RPS1="${return_code} ${ZF_GRAY}[${ZF_LYELLOW}%*${ZF_GRAY}]"
+PS1=$'$(echo $FG0)┌────$(echo $REMOTE) $(echo $ACCENT)$(whoami)@$(hostname) $(echo $FG0)in $(echo $FG1)$(dirs) $(echo $GIT_PROMPT)\n${FG0}└ $ %{$reset_color%}'
+RPS1="${return_code} ${FG0}[${GOLD}%*${FG0}]"
 
 
 ###   ZSH AUTO SUGGESTIONS   ###
