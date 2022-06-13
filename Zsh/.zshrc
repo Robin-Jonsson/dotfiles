@@ -89,11 +89,13 @@ precmd() {
         if [[ -n $(git diff --staged --name-only) ]]; then
             GIT_PROMPT+="&"
         fi
-        if [[ -n $(git rev-list origin..HEAD) ]]; then
-            GIT_PROMPT+="©"
-        fi
-        if [[ -n $(git rev-list HEAD..origin) ]]; then
-            GIT_PROMPT+="®"
+        if [[ -n $(git remote -v) ]]; then
+            if [[ -n $(git rev-list origin..HEAD) ]]; then
+                GIT_PROMPT+="©"
+            fi
+            if [[ -n $(git rev-list HEAD..origin) ]]; then
+                GIT_PROMPT+="®"
+            fi
         fi
         GIT_PROMPT+="${FG0}]"
     fi
