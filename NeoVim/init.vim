@@ -17,6 +17,7 @@ if dein#load_state('/home/robin/.nvim')
 
   " Shougo ---
   call dein#add('Shougo/deoplete.nvim')             " auto completion
+  call dein#add('deoplete-plugins/deoplete-clang')  " clang integration
   call dein#add('Shougo/deol.nvim')                 " shell integration
   " --- Shougo
 
@@ -201,5 +202,9 @@ augroup END
 " == Plugins == "
 " deoplete
 let g:deoplete#enable_at_startup = 1    " enable deoplete by default
+set completeopt-=preview
+" let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
+" let g:deoplete#sources#clang#clang_header = '/usr/include/clang'
+call deoplete#custom#source('_', 'smart_case', v:true)
 " fzf
 nnoremap <C-P> :FZF<CR>
