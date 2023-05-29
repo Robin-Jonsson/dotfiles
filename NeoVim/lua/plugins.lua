@@ -133,7 +133,7 @@ return require('packer').startup(function()
                 })
             })
 
-            local lsp_caps = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+            local lsp_caps = require('cmp_nvim_lsp').default_capabilities()
             local servers = {'clangd'}
             for _, s in ipairs(servers) do
                 require('lspconfig')[s].setup {
