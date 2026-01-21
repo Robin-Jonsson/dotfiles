@@ -1,35 +1,48 @@
-return require('packer').startup(function()
-    -- Packer --
-    use 'wbthomason/packer.nvim'
+-- Bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+    local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+    local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+    if vim.v.shell_error ~= 0 then
+        vim.api.nvim_echo({
+            { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+            { out, "WarningMsg" },
+            { "\nPress any key to exit..." },
+        }, true, {})
+        vim.fn.getchar()
+        os.exit(1)
+    end
+end
+vim.opt.rtp:prepend(lazypath)
 
-    -- Treesitter --
-    use {
-        'nvim-treesitter/nvim-treesitter', run = ':TSUpdate',
-        config = function()
-            require'nvim-treesitter.configs'.setup {
-                -- A list of parser names, or "all"
-                ensure_installed = { "c", "lua" },
+-- Make sure to setup `mapleader` and `maplocalleader` before
+-- loading lazy.nvim so that mappings are correct.
+-- This is also a good place to setup other settings (vim.opt)
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
 
-                -- Install parsers synchronously (only applied to `ensure_installed`)
-                sync_install = false,
+-- Setup lazy.nvim
+require("lazy").setup({
+    spec = {
+        -- add your plugins here
 
-                highlight = {
-                    enable = true,
-                },
-            }
-        end
-    }
-
-    -- Fzf --
-    use {
-        'ibhagwan/fzf-lua',
-        requires = {
-            {'kyazdani42/nvim-web-devicons'},
-            {'junegunn/fzf', run = './install --bin'},
+        -- Treesitter --
+        {
+            'nvim-treesitter/nvim-treesitter',
+            lazy = false,
+            build = ':TSUpdate',
+            opts = {
+                ensure_installed = { "c", "lua", "python" },
+                highlight = { enable = true },
+            },
         },
-        config = function()
-            require('fzf-lua').setup {
-                file_icon_padding = ' ',
+
+        -- FZF --
+        {
+            "ibhagwan/fzf-lua",
+            -- optional for icon support
+            dependencies = { "nvim-tree/nvim-web-devicons" },
+            opts = {
                 files = {
                     previewer = false,
                     file_icons = true,
@@ -42,121 +55,129 @@ return require('packer').startup(function()
                 winopts = {
                     border = 'single',
                 },
-
-            }
-        end
-    }
-
-    -- LSP --
-    use 'neovim/nvim-lspconfig' -- Configurations for Nvim LSP
-    vim.diagnostic.disable()
-
-    -- CMP --
-    use {
-        'hrsh7th/nvim-cmp',
-        requires = {
-            'hrsh7th/cmp-nvim-lsp',
-            'hrsh7th/cmp-nvim-lua',
-            'hrsh7th/cmp-buffer',
-            'hrsh7th/cmp-path',
-            'hrsh7th/cmp-cmdline',
-            'hrsh7th/cmp-vsnip',
-            'hrsh7th/vim-vsnip',
-            'onsails/lspkind.nvim',
+            },
         },
-        config = function()
-            local cmp = require'cmp'
-            local lspkind = require('lspkind')
 
-            cmp.setup({
-                snippet = {
-                    -- REQUIRED - you must specify a snippet engine
-                    expand = function(args)
-                        vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-                    end,
-                },
-                window = {
-                    -- completion = cmp.config.window.bordered(),
-                    -- documentation = cmp.config.window.bordered(),
-                },
-                mapping = cmp.mapping.preset.insert({
-                    --['<C-b>'] = cmp.mapping.scroll_docs(-4),
-                    --['<C-f>'] = cmp.mapping.scroll_docs(4),
-                    ['<C-Space>'] = cmp.mapping.complete(),
-                    ['<C-e>'] = cmp.mapping.abort(),
-                    ['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-                }),
-                sources = cmp.config.sources({
-                    { name = 'nvim_lsp' },
-                    { name = 'nvim_lua' },
-                    { name = 'vsnip' },
-                    { name = 'path' },
-                }, {
-                    { name = 'buffer' },
-                }),
-                formatting = {
-                    format = lspkind.cmp_format({
-                        mode = 'symbol_text',
-                        maxwidth = 50,
+        -- Nvim-surround --
+        {
+            'kylechui/nvim-surround',
+            config = function()
+                require('nvim-surround').setup()
+            end
+        },
 
-                        before = function (entry, vim_item)
-                            return vim_item
-                        end
-                    })
-                },
-            })
-
-            -- Set configuration for specific filetype.
-            cmp.setup.filetype('gitcommit', {
-                sources = cmp.config.sources({
-                    { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
-                }, {
-                    { name = 'buffer' },
-                })
-            })
-
-            -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-            cmp.setup.cmdline('/', {
-                mapping = cmp.mapping.preset.cmdline(),
-                sources = {
-                    { name = 'buffer' }
-                }
-            })
-
-            -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-            cmp.setup.cmdline(':', {
-                mapping = cmp.mapping.preset.cmdline(),
-                sources = cmp.config.sources({
-                    { name = 'path' }
-                }, {
-                    { name = 'cmdline' }
-                })
-            })
-
-            local lsp_caps = require('cmp_nvim_lsp').default_capabilities()
-            local servers = {'clangd'}
-            for _, s in ipairs(servers) do
-                require('lspconfig')[s].setup {
-                    capabilities = lsp_caps,
+        -- Nvim-comment
+        {
+            'terrortylor/nvim-comment',
+            config = function()
+                require('nvim_comment').setup {
+                    comment_empty = false,
                 }
             end
-        end
-    }
+        },
 
-    -- Nvim-surround --
-    use {
-        'kylechui/nvim-surround',
-        config = function()
-            require('nvim-surround').setup()
-        end
-    }
+        -- Nvim-cmp --
+        {
+            'hrsh7th/nvim-cmp',
 
-    use {
-        'terrortylor/nvim-comment',
-        config = function()
-            require('nvim_comment').setup {
-                comment_empty = false,
-            }
-        end
-    }
-end)
+            dependencies = {
+                'neovim/nvim-lspconfig',
+                'hrsh7th/cmp-nvim-lsp',
+                'hrsh7th/cmp-buffer',
+                'hrsh7th/cmp-path',
+                'hrsh7th/cmp-cmdline',
+                'hrsh7th/nvim-cmp',
+
+                -- For vsnip users.
+                'hrsh7th/cmp-vsnip',
+                'hrsh7th/vim-vsnip',
+            },
+
+            config = function()
+                local cmp = require'cmp'
+
+                cmp.setup({
+                    snippet = {
+                        -- REQUIRED - you must specify a snippet engine
+                        expand = function(args)
+                            vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+                            -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+                            -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
+                            -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+                            -- vim.snippet.expand(args.body) -- For native neovim snippets (Neovim v0.10+)
+
+                            -- For `mini.snippets` users:
+                            -- local insert = MiniSnippets.config.expand.insert or MiniSnippets.default_insert
+                            -- insert({ body = args.body }) -- Insert at cursor
+                            -- cmp.resubscribe({ "TextChangedI", "TextChangedP" })
+                            -- require("cmp.config").set_onetime({ sources = {} })
+                        end,
+                    },
+                    window = {
+                        -- completion = cmp.config.window.bordered(),
+                        -- documentation = cmp.config.window.bordered(),
+                    },
+                    mapping = cmp.mapping.preset.insert({
+                        ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+                        ['<C-f>'] = cmp.mapping.scroll_docs(4),
+                        ['<C-Space>'] = cmp.mapping.complete(),
+                        ['<C-e>'] = cmp.mapping.abort(),
+                        ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+                    }),
+                    sources = cmp.config.sources({
+                        { name = 'nvim_lsp' },
+                        { name = 'vsnip' }, -- For vsnip users.
+                        -- { name = 'luasnip' }, -- For luasnip users.
+                        -- { name = 'ultisnips' }, -- For ultisnips users.
+                        -- { name = 'snippy' }, -- For snippy users.
+                    }, {
+                        { name = 'buffer' },
+                    })
+                })
+
+                -- To use git you need to install the plugin petertriho/cmp-git and uncomment lines below
+                -- Set configuration for specific filetype.
+                --[[ cmp.setup.filetype('gitcommit', {
+                sources = cmp.config.sources({
+                { name = 'git' },
+                }, {
+                { name = 'buffer' },
+                })
+                })
+                require("cmp_git").setup() ]]--
+
+                -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+                cmp.setup.cmdline({ '/', '?' }, {
+                    mapping = cmp.mapping.preset.cmdline(),
+                    sources = {
+                        { name = 'buffer' }
+                    }
+                })
+
+                -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+                cmp.setup.cmdline(':', {
+                    mapping = cmp.mapping.preset.cmdline(),
+                    sources = cmp.config.sources({
+                        { name = 'path' }
+                    }, {
+                        { name = 'cmdline' }
+                    }),
+                    matching = { disallow_symbol_nonprefix_matching = false }
+                })
+
+                -- Set up lspconfig.
+                local capabilities = require('cmp_nvim_lsp').default_capabilities()
+                -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+                vim.lsp.config['clangd'].setup = {
+                    capabilities = capabilities,
+                }
+                vim.lsp.enable({'clangd'})
+            end
+        },
+    },
+    -- Configure any other settings here. See the documentation for more details.
+    -- colorscheme that will be used when installing plugins.
+    install = { colorscheme = { "habamax" } },
+    -- automatically check for plugin updates
+    checker = { enabled = true },
+})
