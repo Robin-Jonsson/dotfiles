@@ -101,7 +101,7 @@ precmd() {
     fi
     REMOTE=`if [[ -n $SSH_CLIENT ]]; then; echo " $(echo $GOLD)[ SSH: $(echo $ACCENT)$(echo $SSH_CONNECTION | awk '{print $1}')$(echo $GOLD) ]"; fi`
 }
-PS1=$'$(echo $FG0)┌────$(echo $REMOTE) $(echo $ACCENT)$(whoami)@$(hostname) $(echo $FG0)in $(echo $FG1)$(dirs) $(echo $GIT_PROMPT)\n${FG0}└ $ %{$reset_color%}'
+PS1=$'$(echo $FG0)┌────$(echo $REMOTE) $(echo $ACCENT)%n@$(hostname) $(echo $FG0)in $(echo $FG1)%~ $(echo $GIT_PROMPT)\n${FG0}└ $ %{$reset_color%}'
 RPS1="${return_code} ${FG0}[${GOLD}%*${FG0}]"
 
 
