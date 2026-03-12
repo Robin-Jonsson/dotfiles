@@ -1,0 +1,35 @@
+[general]
+
+[window]
+dimensions = { columns = 90, lines = 24 }
+
+[scrolling]
+history = 0
+
+[font]
+normal = { family = "Ubuntu Mono" }
+size = 13.0
+
+[colors.primary]
+background  = "0x1a1a1b"
+foreground  = "0xccc9ba"
+
+[colors.normal]
+black       = "0x0d1013"
+red         = "0xfc6028"
+green       = "0xaac441"
+yellow      = "0xfda543"
+blue        = "0x2d91d0"
+magenta     = "0xbb00bb"
+cyan        = "0x86e2bf"
+white       = "0xbbbbbb"
+
+[colors.bright]
+black       = "0x555555"
+red         = "0xea5965"
+green       = "0xc1e436"
+yellow      = "0xffec88"
+blue        = "0x5555ff"
+magenta     = "0xff55ff"
+cyan        = "0x99ffda"
+white       = "0xffffff"
