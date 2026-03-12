@@ -29,7 +29,7 @@ autoload -U compinit && compinit
 
 
 ###   EXPORTS   ###
-export TERM=xterm-256color
+export TERM=screen-256color
 export GOPATH=$HOME/.go
 export PATH=$PATH:$GOPATH/bin:$HOME/.bin
 
