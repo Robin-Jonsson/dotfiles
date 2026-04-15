@@ -29,9 +29,28 @@ autoload -U compinit && compinit
 
 
 ###   EXPORTS   ###
+path_prepend() {
+    case ":${PATH}:" in
+        *:"$1":*)
+            return
+            ;;
+        *)
+            # Prepending path
+            export PATH="$1:$PATH"
+	    return
+            ;;
+    esac
+}
+
+# Color
 export TERM=tmux-256color
+
+# Cargo
+path_prepend $HOME/.cargo/bin
+
+# Golang
 export GOPATH=$HOME/.go
-export PATH=$PATH:$GOPATH/bin:$HOME/.bin
+path_prepend $GOPATH/bin
 
 
 ### USAGE   ###
