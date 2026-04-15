@@ -19,10 +19,11 @@ vim.opt.relativenumber = true
 vim.opt.linebreak = true
 vim.opt.ignorecase = true
 vim.opt.completeopt = {'menu', 'menuone', 'noselect'}
-
 local tabwidth = 4
 vim.opt.tabstop = tabwidth
 vim.opt.softtabstop = tabwidth
 vim.opt.shiftwidth = tabwidth
 vim.opt.expandtab = true
 vim.opt.undofile = true
+vim.g.mapleader = ','
+vim.opt.signcolumn = "yes"
