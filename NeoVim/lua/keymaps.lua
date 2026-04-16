@@ -17,6 +17,7 @@ map('v', '>', '>gv')
 map('v', '<C-k>', '<Esc>`<kdd`>pgv')
 map('v', '<C-j>', '<Esc>`>jdd`<Pgv')
 map('n', '<C-p>', "<cmd>lua require('fzf-lua').files()<CR>")
+map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
 -- Navigate visual lines
 map('n', 'j', 'gj')
 map('n', 'k', 'gk')
