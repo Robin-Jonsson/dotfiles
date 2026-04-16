@@ -44,7 +44,9 @@ path_prepend() {
 
 # Color
 export TERM=tmux-256color
-export THEME=dark
+if [[ ! -v THEME ]]; then
+    export THEME=dark
+fi
 
 # Cargo
 path_prepend $HOME/.cargo/bin
