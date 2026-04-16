@@ -1,6 +1,10 @@
 vim.opt.termguicolors = true
 
 vim.opt.background = 'dark'
+if vim.env.THEME == 'light' then
+    vim.opt.background = 'light'
+end
+
 if vim.opt.background:get() == 'light' then
     require('colorscheme.roblight')
 else

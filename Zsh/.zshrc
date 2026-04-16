@@ -44,6 +44,7 @@ path_prepend() {
 
 # Color
 export TERM=tmux-256color
+export THEME=dark
 
 # Cargo
 path_prepend $HOME/.cargo/bin
@@ -88,7 +89,11 @@ autoload -U colors && colors
 setopt prompt_subst
 
 # == Colors == #
-source $source_dir/color-robdark.zsh
+if [[ $THEME == "light" ]]; then
+    source $source_dir/color-roblight.zsh
+else
+    source $source_dir/color-robdark.zsh
+fi
 
 # == Variables == #
 local return_code="%(?..${ACCENT} %? ↵%{$reset_color%})"
