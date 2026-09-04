@@ -41,4 +41,4 @@ function file_type()
     return filetype
 end
 
-vim.opt.statusline = " %{luaeval('mode_current()')} %t %m %= -- %{&fileformat}｜%{luaeval('file_encoding()')}｜%{luaeval('file_type()')} -- %3p%% %3l:%3c "
+vim.opt.statusline = " %{luaeval('mode_current()')} %t %m %= -- %{&fileformat} | %{luaeval('file_encoding()')} | %{luaeval('file_type()')} -- %3p%% %3l:%3c "
