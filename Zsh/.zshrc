@@ -108,7 +108,7 @@ precmd() {
     GIT_CMD=`git rev-parse --abbrev-ref HEAD 2> /dev/null`
     GIT_PROMPT=""
     if [[ -n $GIT_CMD ]]; then
-        GIT_PROMPT+="${FG0}[${ACCENT}${GIT_CMD}"
+        GIT_PROMPT+="${FG}[${ACCENT}${GIT_CMD}"
         if [[ -n $(git diff --name-only) ]]; then
             GIT_PROMPT+="*"
         fi
@@ -123,12 +123,12 @@ precmd() {
                 GIT_PROMPT+="®"
             fi
         fi
-        GIT_PROMPT+="${FG0}]"
+        GIT_PROMPT+="${FG}]"
     fi
     REMOTE=`if [[ -n $SSH_CLIENT ]]; then; echo " $(echo $GOLD)[ SSH: $(echo $ACCENT)$(echo $SSH_CONNECTION | awk '{print $1}')$(echo $GOLD) ]"; fi`
 }
-PS1=$'$(echo $FG0)┌────$(echo $REMOTE) $(echo $ACCENT)%n@$(hostname) $(echo $FG0)in $(echo $FG1)%~ $(echo $GIT_PROMPT)\n${FG0}└ $ %{$reset_color%}'
-RPS1="${return_code} ${FG0}[${GOLD}%*${FG0}]"
+PS1=$'$(echo $FG)┌────$(echo $REMOTE) $(echo $ACCENT)%n@$(hostname) $(echo $FG)in $(echo $ALT)%~ $(echo $GIT_PROMPT)\n${FG}└ $ %{$reset_color%}'
+RPS1="${return_code} ${FG}[${GOLD}%*${FG}]"
 
 
 ###   ZSH AUTO SUGGESTIONS   ###
